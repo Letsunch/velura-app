@@ -8,6 +8,16 @@ import Portrait3 from '../assets/Portrait-3.jpg';
 export default function StylistsList() {
   const navigate = useNavigate();
 
+  // Random soft background color generator
+  const softColors = [
+    '#f0f4f8', // Very light blue-gray
+    '#f8f5f2', // Warm white
+    '#f3f7fb', // Ice blue
+    '#f9f7f3', // Soft ivory
+    '#f5f9f7', // Mint cream
+  ];
+  const randomBgColor = softColors[Math.floor(Math.random() * softColors.length)];
+
   const stylists = [
     {
       id: 1,
@@ -30,7 +40,7 @@ export default function StylistsList() {
   ];
 
   return (
-    <div style={styles.container}>
+    <div style={{...styles.container, backgroundColor: randomBgColor}}>
       <div style={styles.header}>
         <h2 style={styles.title}>Choose Your Stylist</h2>
         <p style={styles.subtitle}>Select from our talented professionals</p>
@@ -49,6 +59,7 @@ export default function StylistsList() {
                 style={styles.cardImg} 
               />
               <div style={styles.specialtyBadge}>{stylist.specialty}</div>
+              <div style={styles.glossOverlay}></div> {/* Gloss effect */}
             </div>
             <div style={styles.cardContent}>
               <h3 style={styles.cardName}>{stylist.name}</h3>
@@ -66,9 +77,9 @@ export default function StylistsList() {
 const styles = {
   container: {
     padding: '60px 20px',
-    backgroundColor: '#f8f9fa',
     fontFamily: "'Inter', sans-serif",
     minHeight: '100vh',
+    transition: 'background-color 0.5s ease', // Smooth transition if color changes
   },
   header: {
     textAlign: 'center',
@@ -102,9 +113,14 @@ const styles = {
     background: 'white',
     borderRadius: '12px',
     overflow: 'hidden',
-    boxShadow: '0 5px 15px rgba(0, 0, 0, 0.08)',
+    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)',
     transition: 'all 0.3s ease',
     cursor: 'pointer',
+    position: 'relative',
+    '&:hover': {
+      transform: 'translateY(-5px)',
+      boxShadow: '0 15px 30px rgba(0, 0, 0, 0.15)',
+    },
   },
   imageContainer: {
     position: 'relative',
@@ -128,9 +144,24 @@ const styles = {
     fontSize: '12px',
     fontWeight: '500',
     letterSpacing: '0.5px',
+    zIndex: 2,
+  },
+  glossOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '60%',
+    background: 'linear-gradient(to bottom, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 100%)',
+    zIndex: 1,
+    pointerEvents: 'none',
+    borderRadius: '12px 12px 0 0',
   },
   cardContent: {
     padding: '25px',
+    position: 'relative',
+    zIndex: 2,
+    background: 'white',
   },
   cardName: {
     fontFamily: "'Playfair Display', serif",
@@ -151,5 +182,9 @@ const styles = {
     cursor: 'pointer',
     transition: 'all 0.3s ease',
     width: '100%',
+    '&:hover': {
+      backgroundColor: '#1B1F3B',
+      color: 'white',
+    },
   },
 };

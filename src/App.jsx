@@ -5,7 +5,7 @@ import Stylist from './screens/StylistsList';
 
 
 function App() {
-  return <HomeScreen />;
+  return <Stylist />;
 }
 
 export default App;
