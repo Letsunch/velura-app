@@ -1,4 +1,5 @@
 import React from 'react';
+import HeroImage from '../assets/Group_477.png'; // ✅ Correct image import
 
 const HeroSection = () => {
   return (
@@ -195,13 +196,13 @@ const HeroSection = () => {
               <span className="accent-text">Truly, yours.</span>
             </h1>
             <p className="subtitle fade-in-up delay-2">
-              Good hair gets your anywhere. We are more than a salon, we are a creative space where we give you a whole new hair experience.
+              Good hair gets you anywhere. We are more than a salon, we are a creative space where we give you a whole new hair experience.
             </p>
             <button className="cta-button fade-in-up delay-3">Book Now</button>
           </div>
           <div className="image-section fade-in-right delay-4">
             <img
-              src="./src/assets/images/Group_477.png"
+              src={HeroImage}
               alt="Model"
               className="hero-image"
             />
