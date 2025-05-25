@@ -120,6 +120,55 @@ const HeroSection = () => {
             max-width: 100%;
           }
         }
+
+        /* Animation Styles */
+        @keyframes fadeInUp {
+          0% {
+            opacity: 0;
+            transform: translateY(40px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes fadeInRight {
+          0% {
+            opacity: 0;
+            transform: translateX(40px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        .fade-in-up {
+          animation: fadeInUp 1s ease forwards;
+          opacity: 0;
+        }
+
+        .fade-in-right {
+          animation: fadeInRight 1s ease forwards;
+          opacity: 0;
+        }
+
+        .delay-1 {
+          animation-delay: 0.3s;
+        }
+
+        .delay-2 {
+          animation-delay: 0.6s;
+        }
+
+        .delay-3 {
+          animation-delay: 0.9s;
+        }
+
+        .delay-4 {
+          animation-delay: 1.2s;
+        }
       `}</style>
 
       {/* Component Markup */}
@@ -140,19 +189,19 @@ const HeroSection = () => {
 
         <div className="hero">
           <div className="text-section">
-            <h1 className="hero-title">
+            <h1 className="hero-title fade-in-up delay-1">
               Graceful<br />
               Hair<br />
               <span className="accent-text">Truly, yours.</span>
             </h1>
-            <p className="subtitle">
+            <p className="subtitle fade-in-up delay-2">
               Good hair gets your anywhere. We are more than a salon, we are a creative space where we give you a whole new hair experience.
             </p>
-            <button className="cta-button">Book Now</button>
+            <button className="cta-button fade-in-up delay-3">Book Now</button>
           </div>
-          <div className="image-section">
+          <div className="image-section fade-in-right delay-4">
             <img
-              src="./src//assets//images//Group_477.png"
+              src="./src/assets/images/Group_477.png"
               alt="Model"
               className="hero-image"
             />
