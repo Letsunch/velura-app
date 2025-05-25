@@ -1,0 +1,166 @@
+import React from 'react';
+
+const HeroSection = () => {
+  return (
+    <>
+      {/* Embedded CSS */}
+      <style>{`
+        .hero-container {
+          font-family: 'Poppins', sans-serif;
+          color: #1C163F;
+          background-color: #fff;
+        }
+
+        .navbar {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 24px 48px;
+        }
+
+        .logo-container {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        }
+
+        .logo-box {
+          background-color: #1C163F;
+          color: #fff;
+          font-weight: bold;
+          border-radius: 8px;
+          padding: 6px 12px;
+        }
+
+        .logo-text {
+          font-size: 18px;
+          font-weight: 600;
+        }
+
+        .nav-links {
+          display: flex;
+          align-items: center;
+          gap: 24px;
+        }
+
+        .nav-links a {
+          text-decoration: none;
+          color: #1C163F;
+          font-weight: 500;
+          font-size: 14px;
+        }
+
+        .appointment-button {
+          background-color: #1C163F;
+          color: #fff;
+          border: none;
+          padding: 8px 16px;
+          border-radius: 8px;
+          font-weight: 600;
+          cursor: pointer;
+        }
+
+        .hero {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 48px;
+          gap: 48px;
+        }
+
+        .text-section {
+          max-width: 50%;
+        }
+
+        .hero-title {
+          font-size: 48px;
+          font-weight: 700;
+          line-height: 1.2;
+          margin-bottom: 24px;
+        }
+
+        .accent-text {
+          font-weight: 800;
+          color: #1C163F;
+        }
+
+        .subtitle {
+          font-size: 16px;
+          color: #666;
+          margin-bottom: 24px;
+        }
+
+        .cta-button {
+          background-color: #1C163F;
+          color: #fff;
+          border: none;
+          padding: 12px 24px;
+          border-radius: 8px;
+          font-weight: 600;
+          cursor: pointer;
+        }
+
+        .image-section {
+          max-width: 50%;
+        }
+
+        .hero-image {
+          width: 100%;
+          border-radius: 16px;
+        }
+
+        @media (max-width: 768px) {
+          .hero {
+            flex-direction: column;
+            text-align: center;
+          }
+
+          .text-section,
+          .image-section {
+            max-width: 100%;
+          }
+        }
+      `}</style>
+
+      {/* Component Markup */}
+      <div className="hero-container">
+        <nav className="navbar">
+          <div className="logo-container">
+            <div className="logo-box">H</div>
+            <span className="logo-text">Haus Salon</span>
+          </div>
+          <div className="nav-links">
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#contact">Contact</a>
+            <button className="appointment-button">Appointment</button>
+          </div>
+        </nav>
+
+        <div className="hero">
+          <div className="text-section">
+            <h1 className="hero-title">
+              Graceful<br />
+              Hair<br />
+              <span className="accent-text">Truly, yours.</span>
+            </h1>
+            <p className="subtitle">
+              Good hair gets your anywhere. We are more than a salon, we are a creative space where we give you a whole new hair experience.
+            </p>
+            <button className="cta-button">Book Now</button>
+          </div>
+          <div className="image-section">
+            <img
+              src="./src//assets//images//Group_477.png"
+              alt="Model"
+              className="hero-image"
+            />
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default HeroSection;
