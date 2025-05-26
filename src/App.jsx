@@ -7,9 +7,11 @@ import ClientRegister from './screens/clientRegister';
 import ClientLogin from './screens/ClientLogin';
 import ProfileUser from './screens/ProfileUser';
 import ForgotPassword from './screens/ForgotPassword';
+import AdminLogin from './screens/AdminLogin';
+
 
 function App() {
-  return <ClientRegister />;
+  return <AdminLogin />;
 }
 
 export default App;
