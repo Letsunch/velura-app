@@ -1,12 +1,20 @@
 // src/screens/ProfileUser.jsx
 import { useEffect, useState } from 'react';
 import { auth, db } from '../firebase/config';
-import { doc, getDoc, collection, query, where, getDocs } from 'firebase/firestore';
+import {
+  doc,
+  getDoc,
+  collection,
+  query,
+  where,
+  getDocs,
+} from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 
 export default function ProfileUser() {
   const [userData, setUserData] = useState(null);
   const [bookings, setBookings] = useState([]);
+  const [stylistsMap, setStylistsMap] = useState({});
 
   useEffect(() => {
     const fetchUserData = async (uid) => {
@@ -27,10 +35,20 @@ export default function ProfileUser() {
       setBookings(data);
     };
 
+    const fetchStylists = async () => {
+      const snap = await getDocs(collection(db, 'stylists'));
+      const map = {};
+      snap.forEach(doc => {
+        map[doc.id] = doc.data().name;
+      });
+      setStylistsMap(map);
+    };
+
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         fetchUserData(user.uid);
         fetchBookings(user.uid);
+        fetchStylists();
       }
     });
 
@@ -61,7 +79,7 @@ export default function ProfileUser() {
       }}>
         <thead style={{ backgroundColor: '#f8f9fa' }}>
           <tr>
-            <th style={cellStyle}>Stylist ID</th>
+            <th style={cellStyle}>Stylist Name</th>
             <th style={cellStyle}>Date</th>
             <th style={cellStyle}>Booked At</th>
           </tr>
@@ -69,7 +87,7 @@ export default function ProfileUser() {
         <tbody>
           {bookings.length > 0 ? bookings.map(booking => (
             <tr key={booking.id}>
-              <td style={cellStyle}>{booking.stylistId}</td>
+              <td style={cellStyle}>{stylistsMap[booking.stylistId] || 'Unknown Stylist'}</td>
               <td style={cellStyle}>{new Date(booking.date).toLocaleDateString()}</td>
               <td style={cellStyle}>{new Date(booking.bookedAt.seconds * 1000).toLocaleString()}</td>
             </tr>

@@ -23,39 +23,49 @@ export default function ClientLogin() {
 
   return (
     <div style={styles.container}>
-      <div style={styles.card}>
-        <div style={styles.logo}>VELURA</div>
-        <h1 style={styles.title}>Client Portal</h1>
-        <p style={styles.subtitle}>Access your appointments and preferences</p>
-
-        <div style={styles.formGroup}>
-          <input
-            type="email"
-            placeholder="Email Address"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            style={styles.input}
-          />
+      <div style={styles.overlay}></div>
+      <div style={styles.content}>
+        <div style={styles.header}>
+          <h1 style={styles.title}>Welcome Back</h1>
+          <p style={styles.subtitle}>Sign in to your Velura account</p>
         </div>
 
-        <div style={styles.formGroup}>
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            style={styles.input}
-          />
-        </div>
+        <div style={styles.form}>
+          <div style={styles.formGroup}>
+            <label style={styles.label}>Email Address</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              style={styles.input}
+              placeholder="your@email.com"
+            />
+          </div>
 
-        <button onClick={handleLogin} style={styles.loginButton}>
-          Sign In
-        </button>
+          <div style={styles.formGroup}>
+            <label style={styles.label}>Password</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              style={styles.input}
+              placeholder="••••••••"
+            />
+          </div>
 
-        <div style={styles.footer}>
-          <Link to="/forgot-password" style={styles.link}>Forgot password?</Link>
-          <span style={styles.divider}>|</span>
-          <Link to="/register" style={styles.link}>Create account</Link>
+          <button 
+            onClick={handleLogin} 
+            style={styles.loginButton}
+            disabled={!email || !password}
+          >
+            Sign In
+          </button>
+
+          <div style={styles.footer}>
+            <Link to="/forgot-password" style={styles.link}>Forgot password?</Link>
+            <span style={styles.divider}>|</span>
+            <Link to="/register" style={styles.link}>Create account</Link>
+          </div>
         </div>
       </div>
     </div>
@@ -64,85 +74,123 @@ export default function ClientLogin() {
 
 const styles = {
   container: {
+    position: 'relative',
+    minHeight: '100vh',
+    width: '100%',
+    backgroundImage: 'url(https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80)',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    minHeight: '100vh',
-    backgroundColor: '#f3f4f6',
-    fontFamily: '"Inter", sans-serif',
-    padding: '20px',
+    color: '#fff',
+    fontFamily: '"Playfair Display", serif',
+    padding: '2rem',
   },
-  card: {
+  overlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  content: {
+    position: 'relative',
+    zIndex: 1,
     width: '100%',
-    maxWidth: '400px',
-    backgroundColor: '#fff',
-    borderRadius: '16px',
-    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.06)',
-    padding: '36px 32px',
+    maxWidth: '500px',
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    backdropFilter: 'blur(10px)',
+    border: '1px solid rgba(255, 255, 255, 0.2)',
+    borderRadius: '8px',
+    padding: '2.5rem',
+    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)',
   },
-  logo: {
-    fontSize: '20px',
-    fontWeight: '700',
-    color: '#b38b6d',
+  header: {
     textAlign: 'center',
-    marginBottom: '8px',
-    letterSpacing: '2px',
+    marginBottom: '2rem',
   },
   title: {
-    fontSize: '22px',
-    fontWeight: '600',
-    textAlign: 'center',
-    color: '#1f2937',
-    marginBottom: '4px',
+    fontSize: '2rem',
+    fontWeight: '700',
+    marginBottom: '0.5rem',
+    letterSpacing: '1px',
+    textShadow: '1px 1px 2px rgba(0, 0, 0, 0.3)',
   },
   subtitle: {
-    fontSize: '13px',
-    color: '#6b7280',
-    textAlign: 'center',
-    marginBottom: '24px',
+    fontSize: '1rem',
+    color: '#b38b6d',
+    fontStyle: 'italic',
+  },
+  form: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '1.5rem',
   },
   formGroup: {
-    marginBottom: '16px',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '0.5rem',
+  },
+  label: {
+    fontSize: '0.9rem',
+    fontWeight: '600',
+    letterSpacing: '0.5px',
   },
   input: {
-    width: '92%',
-    padding: '12px 14px',
-    fontSize: '14px',
-    border: '1px solid #d1d5db',
-    borderRadius: '8px',
-    backgroundColor: '#fff',
-    outline: 'none',
-    transition: 'border-color 0.2s ease',
+    padding: '12px',
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    border: '1px solid rgba(255, 255, 255, 0.3)',
+    borderRadius: '4px',
+    color: '#fff',
+    fontSize: '1rem',
+    '::placeholder': {
+      color: 'rgba(255, 255, 255, 0.5)',
+    },
+    ':focus': {
+      outline: 'none',
+      borderColor: '#b38b6d',
+    },
   },
   loginButton: {
-    width: '100%',
-    padding: '14px',
+    padding: '15px',
     backgroundColor: '#b38b6d',
     color: '#fff',
     border: 'none',
-    borderRadius: '8px',
-    fontSize: '15px',
+    borderRadius: '4px',
+    fontSize: '1rem',
     fontWeight: '600',
+    letterSpacing: '1px',
     cursor: 'pointer',
-    marginTop: '4px',
-    transition: 'background-color 0.2s ease-in-out',
+    transition: 'all 0.3s ease',
+    marginTop: '1rem',
+    ':hover': {
+      backgroundColor: '#9a755a',
+    },
+    ':disabled': {
+      backgroundColor: '#555',
+      cursor: 'not-allowed',
+    },
   },
   footer: {
-    marginTop: '20px',
-    textAlign: 'center',
-    fontSize: '13px',
-    color: '#6b7280',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: '1.5rem',
+    fontSize: '0.9rem',
+    gap: '0.5rem',
   },
   link: {
     color: '#b38b6d',
     textDecoration: 'none',
-    fontWeight: '500',
+    transition: 'all 0.3s ease',
+    ':hover': {
+      color: '#fff',
+      textDecoration: 'underline',
+    },
   },
   divider: {
-    margin: '0 10px',
-    color: '#d1d5db',
+    color: 'rgba(255, 255, 255, 0.3)',
   },
 };

@@ -6,10 +6,10 @@ import BookingScreen from './screens/BookingScreen';
 import ClientRegister from './screens/clientRegister';
 import ClientLogin from './screens/ClientLogin';
 import ProfileUser from './screens/ProfileUser';
-
+import ForgotPassword from './screens/ForgotPassword';
 
 function App() {
-  return <ProfileUser />;
+  return <ClientRegister />;
 }
 
 export default App;
