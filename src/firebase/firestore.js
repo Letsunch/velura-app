@@ -1,4 +1,3 @@
-// src/firebase/firestore.js
 import { db } from './config';
 import {
   collection,
@@ -23,12 +22,32 @@ export const getStylistById = async (id) => {
   return docSnap.exists() ? { id: docSnap.id, ...docSnap.data() } : null;
 };
 
-// Book a stylist
-export const bookStylist = async (userId, stylistId, date) => {
+// Book a stylist with full client info
+export const bookStylist = async ({
+  userId,
+  stylistId,
+  stylistName,
+  date,
+  time,
+  service,
+  notes,
+  firstName,
+  lastName,
+  clientEmail,
+  clientPhone
+}) => {
   return await addDoc(collection(db, 'bookings'), {
     userId,
     stylistId,
+    stylistName,
     date,
+    time,
+    service,
+    notes,
+    firstName,
+    lastName,
+    clientEmail,
+    clientPhone,
     bookedAt: new Date()
   });
 };

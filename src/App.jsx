@@ -11,7 +11,7 @@ import AdminLogin from './screens/AdminLogin';
 
 
 function App() {
-  return <AdminLogin />;
+  return <BookingScreen />;
 }
 
 export default App;
