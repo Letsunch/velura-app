@@ -9,10 +9,11 @@ import ProfileUser from './screens/ProfileUser';
 import ForgotPassword from './screens/ForgotPassword';
 import AdminLogin from './screens/AdminLogin';
 import AdminRegister from './screens/AdminRegister';
+import AdminDashboard from './screens/AdminDashboard';
 
 
 function App() {
-  return <AdminRegister />;
+  return <AdminDashboard />;
 }
 
 export default App;
