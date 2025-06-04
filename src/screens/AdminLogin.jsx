@@ -17,6 +17,18 @@ export default function AdminLogin() {
     }
   };
 
+  const handleForgotPassword = () => {
+    navigate('/forgot-password');
+  };
+
+  const handleSignUp = () => {
+    navigate('/admin-signup');
+  };
+
+  const handleClientLogin = () => {
+    navigate('/client-login');
+  };
+
   return (
     <div style={styles.container}>
       <div style={styles.overlay}></div>
@@ -47,6 +59,9 @@ export default function AdminLogin() {
               style={styles.input}
               placeholder="••••••••"
             />
+            <span style={styles.forgotLink} onClick={handleForgotPassword}>
+              Forgot password?
+            </span>
           </div>
 
           <button 
@@ -56,6 +71,15 @@ export default function AdminLogin() {
           >
             Sign In
           </button>
+
+          <div style={styles.altActions}>
+            <span style={styles.textLink} onClick={handleSignUp}>
+              Don't have an admin account? Sign up
+            </span>
+            <span style={styles.textLink} onClick={handleClientLogin}>
+              Login as Client
+            </span>
+          </div>
         </div>
       </div>
     </div>
@@ -135,13 +159,13 @@ const styles = {
     borderRadius: '4px',
     color: '#fff',
     fontSize: '1rem',
-    '::placeholder': {
-      color: 'rgba(255, 255, 255, 0.5)',
-    },
-    ':focus': {
-      outline: 'none',
-      borderColor: '#b38b6d',
-    },
+  },
+  forgotLink: {
+    marginTop: '0.3rem',
+    fontSize: '0.85rem',
+    color: '#b38b6d',
+    cursor: 'pointer',
+    alignSelf: 'flex-end',
   },
   loginButton: {
     padding: '15px',
@@ -155,12 +179,20 @@ const styles = {
     cursor: 'pointer',
     transition: 'all 0.3s ease',
     marginTop: '1rem',
+  },
+  altActions: {
+    marginTop: '1rem',
+    textAlign: 'center',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '0.5rem',
+  },
+  textLink: {
+    fontSize: '0.85rem',
+    color: '#b38b6d',
+    cursor: 'pointer',
     ':hover': {
-      backgroundColor: '#9a755a',
-    },
-    ':disabled': {
-      backgroundColor: '#555',
-      cursor: 'not-allowed',
-    },
+      color: '#9a755a',
+    },  
   },
 };

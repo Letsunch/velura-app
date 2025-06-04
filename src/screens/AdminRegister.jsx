@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { registerUser } from '../firebase/auth';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 export default function AdminRegister() {
   const [email, setEmail] = useState('');
@@ -29,63 +29,128 @@ export default function AdminRegister() {
   };
 
   return (
-    <div style={styles.container}>
-      <div style={styles.overlay}></div>
-      <div style={styles.content}>
-        <div style={styles.header}>
-          <h1 style={styles.title}>Admin Registration</h1>
-          <p style={styles.subtitle}>Create your Velura management account</p>
-        </div>
+    <>
+      <style>
+        {`
+          .inputField {
+            padding: 12px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            color: #fff;
+            font-size: 1rem;
+            width: 100%;
+          }
 
-        <div style={styles.form}>
-          <div style={styles.formGroup}>
-            <label style={styles.label}>Email Address</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              style={styles.input}
-              placeholder="admin@velura.com"
-            />
+          .inputField::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+          }
+
+          .inputField:focus {
+            outline: none;
+            border-color: #b38b6d;
+          }
+
+          .registerBtn {
+            padding: 15px;
+            background-color: #b38b6d;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+          }
+
+          .registerBtn:hover {
+            background-color: #9a755a;
+          }
+
+          .registerBtn:disabled {
+            background-color: #555;
+            cursor: not-allowed;
+          }
+
+          .loginLink {
+            color: #b38b6d;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+          }
+
+          .loginLink:hover {
+            color: #fff;
+            text-decoration: underline;
+          }
+        `}
+      </style>
+
+      <div style={styles.container}>
+        <div style={styles.overlay}></div>
+        <div style={styles.content}>
+          <div style={styles.header}>
+            <h1 style={styles.title}>Admin Registration</h1>
+            <p style={styles.subtitle}>Create your Velura management account</p>
           </div>
 
-          <div style={styles.formGroup}>
-            <label style={styles.label}>Password</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              style={styles.input}
-              placeholder="••••••••"
-            />
-          </div>
+          <div style={styles.form}>
+            <div style={styles.formGroup}>
+              <label style={styles.label}>Email Address</label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="inputField"
+                placeholder="admin@velura.com"
+              />
+            </div>
 
-          <div style={styles.formGroup}>
-            <label style={styles.label}>Confirm Password</label>
-            <input
-              type="password"
-              value={confirmPass}
-              onChange={(e) => setConfirmPass(e.target.value)}
-              style={styles.input}
-              placeholder="••••••••"
-            />
-          </div>
+            <div style={styles.formGroup}>
+              <label style={styles.label}>Password</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="inputField"
+                placeholder="••••••••"
+              />
+            </div>
 
-          <button 
-            onClick={handleRegister} 
-            style={styles.registerButton}
-            disabled={!email || !password || !confirmPass}
-          >
-            Register Admin Account
-          </button>
+            <div style={styles.formGroup}>
+              <label style={styles.label}>Confirm Password</label>
+              <input
+                type="password"
+                value={confirmPass}
+                onChange={(e) => setConfirmPass(e.target.value)}
+                className="inputField"
+                placeholder="••••••••"
+              />
+            </div>
 
-          <div style={styles.footer}>
-            <span style={styles.loginText}>Already have an account?</span>
-            <Link to="/admin-login" style={styles.loginLink}>Sign in</Link>
+            <button
+              onClick={handleRegister}
+              className="registerBtn"
+              disabled={!email || !password || !confirmPass}
+            >
+              Register Admin Account
+            </button>
+
+            <div style={styles.footerWrapper}>
+              <div style={styles.footer}>
+                <span style={styles.loginText}>Already have an account?</span>
+                <Link to="/admin-login" className="loginLink">Sign in</Link>
+              </div>
+              <div style={styles.clientSignup}>
+                <Link to="/client-register" className="loginLink">Sign up as Client</Link>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
@@ -155,60 +220,24 @@ const styles = {
     fontWeight: '600',
     letterSpacing: '0.5px',
   },
-  input: {
-    padding: '12px',
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
-    border: '1px solid rgba(255, 255, 255, 0.3)',
-    borderRadius: '4px',
-    color: '#fff',
-    fontSize: '1rem',
-    '::placeholder': {
-      color: 'rgba(255, 255, 255, 0.5)',
-    },
-    ':focus': {
-      outline: 'none',
-      borderColor: '#b38b6d',
-    },
-  },
-  registerButton: {
-    padding: '15px',
-    backgroundColor: '#b38b6d',
-    color: '#fff',
-    border: 'none',
-    borderRadius: '4px',
-    fontSize: '1rem',
-    fontWeight: '600',
-    letterSpacing: '1px',
-    cursor: 'pointer',
-    transition: 'all 0.3s ease',
-    marginTop: '1rem',
-    ':hover': {
-      backgroundColor: '#9a755a',
-    },
-    ':disabled': {
-      backgroundColor: '#555',
-      cursor: 'not-allowed',
-    },
+  footerWrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginTop: '1.5rem',
+    gap: '0.5rem',
   },
   footer: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: '1.5rem',
     fontSize: '0.9rem',
     gap: '0.5rem',
   },
+  clientSignup: {
+    fontSize: '0.9rem',
+  },
   loginText: {
     color: 'rgba(255, 255, 255, 0.8)',
-  },
-  loginLink: {
-    color: '#b38b6d',
-    textDecoration: 'none',
-    fontWeight: '600',
-    transition: 'all 0.3s ease',
-    ':hover': {
-      color: '#fff',
-      textDecoration: 'underline',
-    },
   },
 };

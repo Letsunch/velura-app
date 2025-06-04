@@ -8,10 +8,11 @@ import ClientLogin from './screens/ClientLogin';
 import ProfileUser from './screens/ProfileUser';
 import ForgotPassword from './screens/ForgotPassword';
 import AdminLogin from './screens/AdminLogin';
+import AdminRegister from './screens/AdminRegister';
 
 
 function App() {
-  return <BookingScreen />;
+  return <AdminRegister />;
 }
 
 export default App;
