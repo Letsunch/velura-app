@@ -12,6 +12,7 @@ import {
   FiBarChart2,
   FiChevronDown,
   FiLogOut,
+  FiSettings,
 } from 'react-icons/fi';
 
 export default function AdminDashboard() {
@@ -215,9 +216,16 @@ export default function AdminDashboard() {
     },
   };
 
+  const handleProfileClick = () => {
+    // Add your profile navigation logic here
+    console.log('Navigating to profile...');
+    setShowProfileDropdown(false);
+  };
+
   const handleLogout = () => {
     // Add your logout logic here
     console.log('Logging out...');
+    setShowProfileDropdown(false);
     // Example: signOut(auth).then(() => navigate('/login'));
   };
 
@@ -254,6 +262,12 @@ export default function AdminDashboard() {
             </button>
             <div style={profileDropdownStyle}>
               <div 
+                style={{ ...dropdownItemStyle, borderBottom: '1px solid #f3f4f6' }}
+                onClick={handleProfileClick}
+              >
+                <FiUser /> Profile
+              </div>
+              <div 
                 style={dropdownItemStyle}
                 onClick={handleLogout}
               >
@@ -264,7 +278,6 @@ export default function AdminDashboard() {
         </div>
       </div>
 
-      {/* Rest of your component remains the same */}
       <div style={statsStyle}>
         <div style={cardStyle}>
           <div>
